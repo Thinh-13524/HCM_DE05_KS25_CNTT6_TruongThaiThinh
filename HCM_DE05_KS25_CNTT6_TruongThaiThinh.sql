@@ -90,13 +90,10 @@ SELECT *
 FROM matchs
 WHERE match_id = 'MS_007';
 
-SELECT nick_name, position 
-FROM players 
-WHERE team_id IN (
-	SELECT team_id
-    FROM teams
-    WHERE region = 'Vietnam'
-);
+SELECT players.nick_name, players.position 
+FROM players, teams
+WHERE players.team_id = teams.team_id
+AND teams.region = 'Vietnam';
 
 DROP TABLE match_statistics;
 DROP TABLE matchs;
